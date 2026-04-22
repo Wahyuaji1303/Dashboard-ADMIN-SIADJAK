@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIADJAK - Sistem Informasi Arsip Digital Jasa Konstruksi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="LOGO.png" alt="Logo SIADJAK">
+        </div>
+        <div class="brand-text">
+          <h1>SIADJAK</h1>
+          <p>Arsip Kepesertaan</p>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-page="dashboardPage">
+          <span class="nav-icon">📌</span>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-item" data-page="kelolaPage">
+          <span class="nav-icon">🗂️</span>
+          <span>Kelola Arsip</span>
+        </button>
+
+        <button class="nav-item" data-page="uploadPage">
+          <span class="nav-icon">🗃️</span>
+          <span>Upload Berkas</span>
+        </button>
+
+        <div class="sidebar-divider"></div>
+
+        <button class="nav-item" data-page="userPage">
+          <span class="nav-icon">👥</span>
+          <span>Manajemen User</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+      <header class="top-header">
+        <div class="left-header">
+          <button class="menu-toggle" id="menuToggle" type="button">☰</button>
+          <div class="header-title-wrap">
+            <h2>SISTEM INFORMASI ARSIP DIGITAL JASA KONSTRUKSI</h2>
+          </div>
+        </div>
+
+        <div class="admin-box">
+          <button class="admin-trigger" id="adminTrigger" type="button">
+            <span>👤 Admin</span>
+            <span>▾</span>
+          </button>
+
+          <div class="admin-dropdown" id="adminDropdown">
+            <button type="button" id="btnProfile">👤 Profile</button>
+            <button type="button" id="btnLogout">↪ Logout</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="breadcrumb" id="breadcrumb">Home >> Dashboard</div>
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="dashboardPage">
+        <div class="hero-grid">
+          <div class="stats-card primary">
+            <div class="stats-top">
+              <div>
+                <h3 id="totalArsipCount">20</h3>
+                <p>Total Berkas Arsip</p>
+              </div>
+              <div class="stats-icon">📁</div>
+            </div>
+          </div>
+
+          <div class="welcome-panel">
+            <h3>Dashboard Arsip</h3>
+            <p>SISTEM INFORMASI ARSIP DIGITAL JASA KONSTRUKSI</p>
+          </div>
+        </div>
+
+        <div class="section-card latest-card">
+          <div class="section-title">
+            <h3>📂 Berkas Kepesertaan Terbaru</h3>
+          </div>
+
+          <div class="latest-list" id="latestList"></div>
+
+          <div class="latest-footer">
+            <label for="jumlahTampil">Tampilkan</label>
+            <select id="jumlahTampil">
+              <option value="10">10</option>
+              <option value="20" selected>20</option>
+              <option value="50">50</option>
+            </select>
+            <span>Berkas</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- KELOLA ARSIP -->
+      <section class="page" id="kelolaPage">
+        <div class="section-card">
+          <div class="table-toolbar table-toolbar-bottom">
+            <div class="table-search">
+              <label for="searchArsip">Pencarian:</label>
+              <div class="search-input-wrap">
+                <input
+                  type="text"
+                  id="searchArsip"
+                  placeholder="Cari No. Proyek, Tanggal..."
+                />
+                <button class="search-btn" type="button">🔎</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>No. Proyek</th>
+                  <th>Nama Proyek</th>
+                  <th>Kontraktor</th>
+                  <th>Kontrak</th>
+                  <th>Tanggal</th>
+                  <th>No. Boks / Laci Filling</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="arsipTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- UPLOAD BERKAS -->
+      <section class="page" id="uploadPage">
+        <div class="form-card">
+          <div class="form-card-title">Upload Berkas</div>
+
+          <form id="uploadForm" class="form-grid">
+            <div class="form-group">
+              <label for="uploadNoProyek">No. Proyek</label>
+              <input type="text" id="uploadNoProyek" placeholder="Tambahkan no. proyek.....">
+            </div>
+
+            <div class="form-group">
+              <label for="uploadNamaProyek">Nama Proyek</label>
+              <input type="text" id="uploadNamaProyek" placeholder="Tambahkan nama proyek.....">
+            </div>
+
+            <div class="form-group">
+              <label for="uploadKontraktor">Kontraktor</label>
+              <input type="text" id="uploadKontraktor" placeholder="Tambahkan nama kontraktor.....">
+            </div>
+
+            <div class="form-group">
+              <label for="uploadKontrak">Kontrak</label>
+              <input type="text" id="uploadKontrak" placeholder="Tambahkan masa kontrak.....">
+            </div>
+
+            <div class="form-group">
+              <label for="uploadTanggal">Tanggal Upload Berkas</label>
+              <input type="date" id="uploadTanggal">
+            </div>
+
+            <div class="form-group">
+              <label for="uploadBoks">No. Boks / Laci Filling</label>
+              <input type="text" id="uploadBoks" placeholder="Tambahkan no. boks / laci filling.....">
+            </div>
+
+            <div class="form-group full">
+              <label for="uploadKeterangan">Keterangan</label>
+              <textarea id="uploadKeterangan" rows="4" placeholder="Tambahkan keterangan (opsional)"></textarea>
+            </div>
+
+            <div class="form-group full">
+              <label for="uploadFile">Preview Upload Berkas</label>
+              <div class="file-upload-box">
+                <input type="file" id="uploadFile" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+                <small>+ Format berkas (No.Proyek_Nama Kontraktor)</small>
+              </div>
+            </div>
+
+            <div class="form-actions full">
+              <button type="submit" class="btn btn-danger">⬇ Simpan Berkas</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- MANAJEMEN USER -->
+      <section class="page" id="userPage">
+        <div class="user-top-cards">
+          <div class="mini-card soft-blue">
+            <div class="mini-card-icon">👥</div>
+            <div>
+              <h4 id="totalUserCount">3</h4>
+              <p>Total Users</p>
+              <small>Semua pengguna terdaftar</small>
+            </div>
+          </div>
+
+          <div class="mini-card soft-green">
+            <div class="mini-card-icon">🟢</div>
+            <div>
+              <h4 id="activeUserCount">3</h4>
+              <p>Active Users</p>
+              <small>Pengguna aktif</small>
+            </div>
+          </div>
+
+          <div class="mini-card soft-gray">
+            <div>
+              <p class="role-title">Tipe Role</p>
+              <small>✔ Admin - Akses Penuh</small><br>
+              <small>✔ User - Akses Terbatas</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="user-toolbar">
+          <div class="search-input-wrap user-search">
+            <span>🔎</span>
+            <input type="text" id="searchUser" placeholder="Cari pengguna.....">
+          </div>
+
+          <button class="btn btn-primary" id="btnOpenAddUser" type="button">➕ Tambah User</button>
+        </div>
+
+        <div class="section-card">
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Terakhir Login</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="userTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL PROFILE -->
+  <div class="modal" id="profileModal">
+    <div class="modal-box modal-md">
+      <button class="modal-close" data-close="profileModal">✕</button>
+      <div class="modal-title">Profile Admin</div>
+
+      <div class="profile-card-grid">
+        <div class="profile-avatar">👤</div>
+        <div class="profile-item">
+          <span>Nama</span>
+          <strong id="profileName">Admin</strong>
+        </div>
+        <div class="profile-item">
+          <span>Email</span>
+          <strong id="profileEmail">admin@siadjak.com</strong>
+        </div>
+        <div class="profile-item">
+          <span>Role</span>
+          <strong id="profileRole">Admin</strong>
+        </div>
+        <div class="profile-item">
+          <span>Status</span>
+          <strong id="profileStatus">Aktif</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PREVIEW -->
+  <div class="modal" id="previewModal">
+    <div class="modal-box modal-lg preview-blue">
+      <button class="modal-close" data-close="previewModal">✕</button>
+      <div class="modal-title">📂 Preview Berkas</div>
+
+      <div class="preview-panel">
+        <div class="preview-file">
+          <div class="preview-file-icon">📁</div>
+          <h3 id="previewFileName">79226_DuaSinarDutaJaya.pdf</h3>
+          <button class="btn btn-danger" type="button">⬇ Download PDF</button>
+        </div>
+
+        <div class="akses-box">
+          <h4>🕒 Riwayat Akses</h4>
+          <div class="akses-item">
+            <span class="akses-tag">Akses ke-1</span>
+            <span id="previewAksesUser">👤 Admin</span>
+            <span id="previewAksesDate">1 Jan 2026</span>
+            <span id="previewAksesTime">10:30 WIB</span>
+          </div>
+        </div>
+
+        <div class="form-actions form-actions-start">
+          <button type="button" class="btn btn-primary" data-close="previewModal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL EDIT ARSIP -->
+  <div class="modal" id="editArsipModal">
+    <div class="modal-box modal-lg edit-blue">
+      <button class="modal-close" data-close="editArsipModal">✕</button>
+      <div class="modal-title">Edit Berkas</div>
+
+      <form id="editArsipForm" class="form-grid">
+        <input type="hidden" id="editArsipIndex">
+
+        <div class="form-group">
+          <label>No. Proyek</label>
+          <input type="text" id="editNoProyek">
+        </div>
+
+        <div class="form-group">
+          <label>Nama Proyek</label>
+          <input type="text" id="editNamaProyek">
+        </div>
+
+        <div class="form-group">
+          <label>Kontraktor</label>
+          <input type="text" id="editKontraktor">
+        </div>
+
+        <div class="form-group">
+          <label>Kontrak</label>
+          <input type="text" id="editKontrak">
+        </div>
+
+        <div class="form-group">
+          <label>Tanggal</label>
+          <input type="date" id="editTanggal">
+        </div>
+
+        <div class="form-group">
+          <label>No. Boks / Laci Filling</label>
+          <input type="text" id="editBoks">
+        </div>
+
+        <div class="form-group full">
+          <label>Keterangan</label>
+          <textarea id="editKeterangan" rows="4"></textarea>
+        </div>
+
+        <div class="form-actions full">
+          <button type="button" class="btn btn-light" data-close="editArsipModal">Batal</button>
+          <button type="submit" class="btn btn-danger">⬇ Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL HAPUS ARSIP -->
+  <div class="modal" id="deleteArsipModal">
+    <div class="modal-box modal-sm center delete-blue">
+      <div class="warning-icon">⚠️</div>
+      <h3>Yakin Ingin Hapus Berkas?</h3>
+      <p>Anda akan menghapus berkas</p>
+      <div class="delete-file-name" id="deleteFileName">79226_DuaSinarDutaJaya.pdf</div>
+
+      <div class="form-actions form-actions-center">
+        <button class="btn btn-light" data-close="deleteArsipModal" type="button">Batal</button>
+        <button class="btn btn-danger" id="confirmDeleteArsip" type="button">Hapus Sekarang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL EDIT USER -->
+  <div class="modal" id="editUserModal">
+    <div class="modal-box modal-md light-blue">
+      <button class="modal-close" data-close="editUserModal">✕</button>
+      <div class="modal-title">Edit User</div>
+
+      <form id="editUserForm" class="form-grid">
+        <input type="hidden" id="editUserIndex">
+
+        <div class="form-group full">
+          <label>User</label>
+          <input type="text" id="editUserName" placeholder="Tambahkan user.....">
+        </div>
+
+        <div class="form-group full">
+          <label>Email</label>
+          <input type="email" id="editUserEmail" placeholder="Tambahkan email.....">
+        </div>
+
+        <div class="form-group full">
+          <label>Password</label>
+          <input type="password" id="editUserPassword" placeholder="Tambahkan password.....">
+        </div>
+
+        <div class="form-group full">
+          <label>Konfirmasi Password</label>
+          <input type="password" id="editUserPasswordConfirm" placeholder="Tambahkan konfirmasi password.....">
+        </div>
+
+        <div class="form-group full">
+          <label>Role</label>
+          <select id="editUserRole">
+            <option value="">- - Pilih Role - -</option>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
+        </div>
+
+        <div class="form-actions full">
+          <button type="button" class="btn btn-light" data-close="editUserModal">Batal</button>
+          <button type="submit" class="btn btn-primary">⬇ Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL TAMBAH USER -->
+  <div class="modal" id="addUserModal">
+    <div class="modal-box modal-md light-blue">
+      <button class="modal-close" data-close="addUserModal">✕</button>
+      <div class="modal-title">Tambah User</div>
+
+      <form id="addUserForm" class="form-grid">
+        <div class="form-group full">
+          <label>User</label>
+          <input type="text" id="addUserName" placeholder="Tambahkan user.....">
+        </div>
+
+        <div class="form-group full">
+          <label>Email</label>
+          <input type="email" id="addUserEmail" placeholder="Tambahkan email.....">
+        </div>
+
+        <div class="form-group full">
+          <label>Password</label>
+          <input type="password" id="addUserPassword" placeholder="Tambahkan password.....">
+        </div>
+
+        <div class="form-group full">
+          <label>Konfirmasi Password</label>
+          <input type="password" id="addUserPasswordConfirm" placeholder="Tambahkan konfirmasi password.....">
+        </div>
+
+        <div class="form-group full">
+          <label>Role</label>
+          <select id="addUserRole">
+            <option value="">- - Pilih Role - -</option>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
+        </div>
+
+        <div class="form-actions full">
+          <button type="button" class="btn btn-light" data-close="addUserModal">Batal</button>
+          <button type="submit" class="btn btn-primary">⬇ Simpan User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
