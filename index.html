@@ -13,7 +13,6 @@
 <body>
 
   <div class="app-shell">
-    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
       <div class="brand">
         <div class="brand-logo">
@@ -52,7 +51,6 @@
       </nav>
     </aside>
 
-    <!-- MAIN -->
     <main class="main-content">
       <header class="top-header">
         <div class="left-header">
@@ -77,7 +75,6 @@
 
       <div class="breadcrumb" id="breadcrumb">Home >> Dashboard</div>
 
-      <!-- DASHBOARD -->
       <section class="page active" id="dashboardPage">
         <div class="hero-grid">
           <div class="stats-card primary">
@@ -115,23 +112,8 @@
         </div>
       </section>
 
-      <!-- KELOLA ARSIP -->
       <section class="page" id="kelolaPage">
         <div class="section-card">
-          <div class="table-toolbar table-toolbar-bottom">
-            <div class="table-search">
-              <label for="searchArsip">Pencarian:</label>
-              <div class="search-input-wrap">
-                <input
-                  type="text"
-                  id="searchArsip"
-                  placeholder="Cari No. Proyek, Tanggal..."
-                />
-                <button class="search-btn" type="button">🔎</button>
-              </div>
-            </div>
-          </div>
-
           <div class="table-wrapper">
             <table class="data-table">
               <thead>
@@ -149,9 +131,33 @@
             </table>
           </div>
         </div>
+
+        <div class="kelola-bottom-tools">
+          <div class="table-search bawah">
+            <label for="searchArsip">Pencarian:</label>
+            <div class="search-input-wrap kecil">
+              <input type="text" id="searchArsip" placeholder="Cari No. Proyek, Tanggal...">
+              <button class="search-btn" type="button">🔎</button>
+            </div>
+          </div>
+
+          <div class="kontraktor-filter-box">
+            <label for="filterKontraktor">Pencarian Kontraktor:</label>
+
+            <select id="filterKontraktor">
+              <option value="">Pilih Kontraktor</option>
+              <option value="Dua Sinar Duta Jaya">Dua Sinar Duta Jaya</option>
+              <option value="Trijayamahe">Trijayamahe</option>
+              <option value="Barito Anugrah Sejati">Barito Anugrah Sejati</option>
+              <option value="Gunung Api Mulia">Gunung Api Mulia</option>
+              <option value="Putra Teknik Sejahtera">Putra Teknik Sejahtera</option>
+            </select>
+
+            <button type="button" class="btn-plus-kontraktor" id="btnOpenKontraktor">+</button>
+          </div>
+        </div>
       </section>
 
-      <!-- UPLOAD BERKAS -->
       <section class="page" id="uploadPage">
         <div class="form-card">
           <div class="form-card-title">Upload Berkas</div>
@@ -207,7 +213,6 @@
         </div>
       </section>
 
-      <!-- MANAJEMEN USER -->
       <section class="page" id="userPage">
         <div class="user-top-cards">
           <div class="mini-card soft-blue">
@@ -267,7 +272,6 @@
     </main>
   </div>
 
-  <!-- MODAL PROFILE -->
   <div class="modal" id="profileModal">
     <div class="modal-box modal-md">
       <button class="modal-close" data-close="profileModal">✕</button>
@@ -275,27 +279,14 @@
 
       <div class="profile-card-grid">
         <div class="profile-avatar">👤</div>
-        <div class="profile-item">
-          <span>Nama</span>
-          <strong id="profileName">Admin</strong>
-        </div>
-        <div class="profile-item">
-          <span>Email</span>
-          <strong id="profileEmail">admin@siadjak.com</strong>
-        </div>
-        <div class="profile-item">
-          <span>Role</span>
-          <strong id="profileRole">Admin</strong>
-        </div>
-        <div class="profile-item">
-          <span>Status</span>
-          <strong id="profileStatus">Aktif</strong>
-        </div>
+        <div class="profile-item"><span>Nama</span><strong id="profileName">Admin</strong></div>
+        <div class="profile-item"><span>Email</span><strong id="profileEmail">admin@siadjak.com</strong></div>
+        <div class="profile-item"><span>Role</span><strong id="profileRole">Admin</strong></div>
+        <div class="profile-item"><span>Status</span><strong id="profileStatus">Aktif</strong></div>
       </div>
     </div>
   </div>
 
-  <!-- MODAL PREVIEW -->
   <div class="modal" id="previewModal">
     <div class="modal-box modal-lg preview-blue">
       <button class="modal-close" data-close="previewModal">✕</button>
@@ -325,7 +316,6 @@
     </div>
   </div>
 
-  <!-- MODAL EDIT ARSIP -->
   <div class="modal" id="editArsipModal">
     <div class="modal-box modal-lg edit-blue">
       <button class="modal-close" data-close="editArsipModal">✕</button>
@@ -334,35 +324,12 @@
       <form id="editArsipForm" class="form-grid">
         <input type="hidden" id="editArsipIndex">
 
-        <div class="form-group">
-          <label>No. Proyek</label>
-          <input type="text" id="editNoProyek">
-        </div>
-
-        <div class="form-group">
-          <label>Nama Proyek</label>
-          <input type="text" id="editNamaProyek">
-        </div>
-
-        <div class="form-group">
-          <label>Kontraktor</label>
-          <input type="text" id="editKontraktor">
-        </div>
-
-        <div class="form-group">
-          <label>Kontrak</label>
-          <input type="text" id="editKontrak">
-        </div>
-
-        <div class="form-group">
-          <label>Tanggal</label>
-          <input type="date" id="editTanggal">
-        </div>
-
-        <div class="form-group">
-          <label>No. Boks / Laci Filling</label>
-          <input type="text" id="editBoks">
-        </div>
+        <div class="form-group"><label>No. Proyek</label><input type="text" id="editNoProyek"></div>
+        <div class="form-group"><label>Nama Proyek</label><input type="text" id="editNamaProyek"></div>
+        <div class="form-group"><label>Kontraktor</label><input type="text" id="editKontraktor"></div>
+        <div class="form-group"><label>Kontrak</label><input type="text" id="editKontrak"></div>
+        <div class="form-group"><label>Tanggal</label><input type="date" id="editTanggal"></div>
+        <div class="form-group"><label>No. Boks / Laci Filling</label><input type="text" id="editBoks"></div>
 
         <div class="form-group full">
           <label>Keterangan</label>
@@ -377,7 +344,6 @@
     </div>
   </div>
 
-  <!-- MODAL HAPUS ARSIP -->
   <div class="modal" id="deleteArsipModal">
     <div class="modal-box modal-sm center delete-blue">
       <div class="warning-icon">⚠️</div>
@@ -392,7 +358,23 @@
     </div>
   </div>
 
-  <!-- MODAL EDIT USER -->
+  <div class="modal" id="kontraktorModal">
+    <div class="modal-box modal-md kontraktor-modal">
+      <button class="modal-close" data-close="kontraktorModal">✕</button>
+      <div class="modal-title">Form Tambah Kontraktor</div>
+
+      <div class="form-group full">
+        <label for="namaKontraktorBaru">Nama Kontraktor</label>
+        <input type="text" id="namaKontraktorBaru" placeholder="Tambahkan nama kontraktor....">
+      </div>
+
+      <div class="form-actions form-actions-center kontraktor-actions">
+        <button type="button" class="btn btn-light" data-close="kontraktorModal">Batal</button>
+        <button type="button" class="btn btn-danger" id="btnSimpanKontraktor">Simpan</button>
+      </div>
+    </div>
+  </div>
+
   <div class="modal" id="editUserModal">
     <div class="modal-box modal-md light-blue">
       <button class="modal-close" data-close="editUserModal">✕</button>
@@ -401,25 +383,10 @@
       <form id="editUserForm" class="form-grid">
         <input type="hidden" id="editUserIndex">
 
-        <div class="form-group full">
-          <label>User</label>
-          <input type="text" id="editUserName" placeholder="Tambahkan user.....">
-        </div>
-
-        <div class="form-group full">
-          <label>Email</label>
-          <input type="email" id="editUserEmail" placeholder="Tambahkan email.....">
-        </div>
-
-        <div class="form-group full">
-          <label>Password</label>
-          <input type="password" id="editUserPassword" placeholder="Tambahkan password.....">
-        </div>
-
-        <div class="form-group full">
-          <label>Konfirmasi Password</label>
-          <input type="password" id="editUserPasswordConfirm" placeholder="Tambahkan konfirmasi password.....">
-        </div>
+        <div class="form-group full"><label>User</label><input type="text" id="editUserName" placeholder="Tambahkan user....."></div>
+        <div class="form-group full"><label>Email</label><input type="email" id="editUserEmail" placeholder="Tambahkan email....."></div>
+        <div class="form-group full"><label>Password</label><input type="password" id="editUserPassword" placeholder="Tambahkan password....."></div>
+        <div class="form-group full"><label>Konfirmasi Password</label><input type="password" id="editUserPasswordConfirm" placeholder="Tambahkan konfirmasi password....."></div>
 
         <div class="form-group full">
           <label>Role</label>
@@ -438,32 +405,16 @@
     </div>
   </div>
 
-  <!-- MODAL TAMBAH USER -->
   <div class="modal" id="addUserModal">
     <div class="modal-box modal-md light-blue">
       <button class="modal-close" data-close="addUserModal">✕</button>
       <div class="modal-title">Tambah User</div>
 
       <form id="addUserForm" class="form-grid">
-        <div class="form-group full">
-          <label>User</label>
-          <input type="text" id="addUserName" placeholder="Tambahkan user.....">
-        </div>
-
-        <div class="form-group full">
-          <label>Email</label>
-          <input type="email" id="addUserEmail" placeholder="Tambahkan email.....">
-        </div>
-
-        <div class="form-group full">
-          <label>Password</label>
-          <input type="password" id="addUserPassword" placeholder="Tambahkan password.....">
-        </div>
-
-        <div class="form-group full">
-          <label>Konfirmasi Password</label>
-          <input type="password" id="addUserPasswordConfirm" placeholder="Tambahkan konfirmasi password.....">
-        </div>
+        <div class="form-group full"><label>User</label><input type="text" id="addUserName" placeholder="Tambahkan user....."></div>
+        <div class="form-group full"><label>Email</label><input type="email" id="addUserEmail" placeholder="Tambahkan email....."></div>
+        <div class="form-group full"><label>Password</label><input type="password" id="addUserPassword" placeholder="Tambahkan password....."></div>
+        <div class="form-group full"><label>Konfirmasi Password</label><input type="password" id="addUserPasswordConfirm" placeholder="Tambahkan konfirmasi password....."></div>
 
         <div class="form-group full">
           <label>Role</label>
