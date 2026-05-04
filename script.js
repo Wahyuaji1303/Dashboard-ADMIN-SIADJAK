@@ -97,7 +97,7 @@ const breadcrumb = document.getElementById("breadcrumb");
 const pageTitles = {
   dashboardPage: "Home >> Dashboard",
   kelolaPage: "Home >> Kelola Arsip",
-  uploadPage: "Home >> Upload Berkas",
+  uploadPage: "Home >> Upload Dokumen",
   userPage: "Home >> Manajemen User"
 };
 
@@ -236,7 +236,7 @@ function renderArsipTable(keyword = "", kontraktor = "") {
         <td>${item.boks}</td>
         <td>
           <div class="action-buttons">
-            <button class="mini-btn mini-view" onclick="openPreviewModal(${originalIndex})">Lihat Berkas</button>
+            <button class="mini-btn mini-view" onclick="openPreviewModal(${originalIndex})">Lihat Dokumen</button>
             <button class="mini-btn mini-edit" onclick="openEditArsipModal(${originalIndex})">Edit</button>
             <button class="mini-btn mini-delete" onclick="openDeleteArsipModal(${originalIndex})">Delete</button>
           </div>
@@ -426,7 +426,7 @@ function bindForms() {
     const fileInput = document.getElementById("uploadFile");
 
     if (!noProyek || !namaProyek || !kontraktor || !kontrak || !tanggal || !boks) {
-      alert("Mohon lengkapi data upload berkas.");
+      alert("Mohon lengkapi data upload dokumen.");
       return;
     }
 
@@ -498,7 +498,7 @@ function bindForms() {
       filterKelolaAdmin();
       updateCounters();
       closeModal("deleteArsipModal");
-      alert("Berkas berhasil dihapus.");
+      alert("Dokumen berhasil dihapus.");
     }
   });
 
