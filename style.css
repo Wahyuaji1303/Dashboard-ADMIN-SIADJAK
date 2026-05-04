@@ -38,7 +38,6 @@ textarea{
   min-height:100vh;
 }
 
-/* SIDEBAR */
 .sidebar{
   width:320px;
   background:linear-gradient(180deg, #0c1f50 0%, #0a1a44 55%, #08163a 100%);
@@ -77,10 +76,6 @@ textarea{
   height:100%;
   object-fit:contain;
   display:block;
-}
-
-.brand-text{
-  min-width:0;
 }
 
 .brand h1{
@@ -139,7 +134,6 @@ textarea{
   flex-shrink:0;
 }
 
-/* MAIN */
 .main-content{
   flex:1;
   padding:28px 32px 40px;
@@ -173,10 +167,6 @@ textarea{
   font-size:28px;
   cursor:pointer;
   flex-shrink:0;
-}
-
-.header-title-wrap{
-  min-width:0;
 }
 
 .top-header h2{
@@ -248,7 +238,6 @@ textarea{
   line-height:1.4;
 }
 
-/* PAGE */
 .page{
   display:none;
 }
@@ -257,7 +246,6 @@ textarea{
   display:block;
 }
 
-/* DASHBOARD */
 .hero-grid{
   display:grid;
   grid-template-columns:460px 1fr;
@@ -324,7 +312,6 @@ textarea{
   font-weight:600;
 }
 
-/* CARD */
 .section-card{
   background:var(--card);
   border-radius:34px;
@@ -404,20 +391,13 @@ textarea{
   font-size:16px;
 }
 
-/* TOOLBAR */
-.table-toolbar,
-.user-toolbar{
+.kelola-bottom-tools{
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:space-between;
   gap:18px;
-  margin-bottom:18px;
+  margin-top:22px;
   flex-wrap:wrap;
-}
-
-.table-toolbar-bottom{
-  margin-top:18px;
-  margin-bottom:0;
 }
 
 .table-search{
@@ -427,10 +407,17 @@ textarea{
   flex-wrap:wrap;
 }
 
+.table-search.bawah{
+  background:linear-gradient(180deg, #4477dd, #4c7fe5);
+  color:#fff;
+  padding:14px 18px;
+  border-radius:16px;
+}
+
 .table-search label{
-  font-size:24px;
+  font-size:20px;
   font-weight:700;
-  color:var(--navy);
+  color:inherit;
 }
 
 .search-input-wrap{
@@ -443,6 +430,13 @@ textarea{
   color:#fff;
   min-width:430px;
   max-width:100%;
+}
+
+.search-input-wrap.kecil{
+  min-width:0;
+  width:360px;
+  padding:0;
+  background:transparent;
 }
 
 .search-input-wrap input{
@@ -468,17 +462,46 @@ textarea{
   flex-shrink:0;
 }
 
-.user-search{
-  background:#e5e7eb;
-  color:#111827;
-  min-width:420px;
+.kontraktor-filter-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:linear-gradient(180deg, #4477dd, #4c7fe5);
+  color:#fff;
+  padding:14px 18px;
+  border-radius:16px;
+  margin-left:auto;
 }
 
-.user-search input{
-  background:transparent;
+.kontraktor-filter-box label{
+  font-size:16px;
+  font-weight:500;
+  white-space:nowrap;
 }
 
-/* TABLE */
+.kontraktor-filter-box select{
+  width:240px;
+  border:none;
+  outline:none;
+  background:#fff;
+  border-radius:8px;
+  padding:12px;
+  color:#0f172a;
+  font-size:14px;
+}
+
+.btn-plus-kontraktor{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:10px;
+  background:#0b1d4d;
+  color:#fff;
+  font-size:28px;
+  font-weight:800;
+  cursor:pointer;
+}
+
 .table-wrapper{
   width:100%;
   overflow:auto;
@@ -608,7 +631,6 @@ textarea{
 .mini-edit{ background:#9ac35b; }
 .mini-delete{ background:#e25b42; }
 
-/* FORM */
 .form-card{
   background:linear-gradient(180deg, #396dca, #2c61c7);
   border-radius:30px;
@@ -697,7 +719,6 @@ textarea{
   justify-content:center;
 }
 
-/* USER */
 .user-top-cards{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
@@ -714,17 +735,9 @@ textarea{
   box-shadow:var(--shadow);
 }
 
-.soft-blue{
-  background:#cfe0ff;
-}
-
-.soft-green{
-  background:#d8efb5;
-}
-
-.soft-gray{
-  background:#e7e7e7;
-}
+.soft-blue{ background:#cfe0ff; }
+.soft-green{ background:#d8efb5; }
+.soft-gray{ background:#e7e7e7; }
 
 .mini-card-icon{
   font-size:40px;
@@ -753,7 +766,6 @@ textarea{
   color:#ffffff;
 }
 
-/* PROFILE */
 .profile-card-grid{
   display:grid;
   gap:16px;
@@ -791,7 +803,6 @@ textarea{
   word-break:break-word;
 }
 
-/* MODAL */
 .modal{
   position:fixed;
   inset:0;
@@ -839,19 +850,31 @@ textarea{
   color:#fff;
 }
 
-.preview-blue{
-  background:#3567c8;
-  color:#fff;
-}
-
-.edit-blue{
-  background:#3567c8;
-  color:#fff;
-}
-
+.preview-blue,
+.edit-blue,
 .delete-blue{
   background:#3567c8;
   color:#fff;
+}
+
+.kontraktor-modal{
+  background:#2169c5;
+  color:#fff;
+  border-radius:18px;
+  max-width:620px;
+}
+
+.kontraktor-modal .form-group label{
+  color:#fff;
+}
+
+.kontraktor-modal input{
+  border-radius:8px;
+}
+
+.kontraktor-actions{
+  margin-top:28px;
+  gap:42px;
 }
 
 .modal-close{
@@ -863,10 +886,6 @@ textarea{
   font-size:28px;
   cursor:pointer;
   color:inherit;
-}
-
-.preview-panel{
-  background:transparent;
 }
 
 .preview-file{
@@ -939,7 +958,6 @@ textarea{
   word-break:break-word;
 }
 
-/* RESPONSIVE */
 @media (max-width: 1300px){
   .hero-grid{
     grid-template-columns:1fr;
@@ -960,16 +978,13 @@ textarea{
     align-items:flex-start;
   }
 
-  .left-header{
-    width:100%;
-  }
-
-  .admin-box{
+  .left-header,
+  .admin-box,
+  .admin-trigger{
     width:100%;
   }
 
   .admin-trigger{
-    width:100%;
     justify-content:space-between;
   }
 
@@ -1027,10 +1042,6 @@ textarea{
     height:82px;
   }
 
-  .brand h1{
-    margin-top:0;
-  }
-
   .left-header{
     flex-direction:column;
     align-items:flex-start;
@@ -1070,32 +1081,22 @@ textarea{
     border-radius:24px;
   }
 
-  .section-title h3,
-  .form-card-title,
-  .modal-title{
-    font-size:24px;
-  }
-
-  .latest-item{
+  .kelola-bottom-tools{
     flex-direction:column;
-    align-items:flex-start;
   }
 
-  .latest-date{
-    white-space:normal;
-  }
-
-  .search-input-wrap,
-  .user-search{
-    min-width:100%;
-  }
-
-  .table-search{
+  .table-search.bawah,
+  .kontraktor-filter-box{
     width:100%;
+    margin-left:0;
+    flex-direction:column;
+    align-items:stretch;
   }
 
-  .table-search label{
-    font-size:18px;
+  .search-input-wrap.kecil,
+  .kontraktor-filter-box select,
+  .btn-plus-kontraktor{
+    width:100%;
   }
 
   .data-table{
@@ -1108,8 +1109,13 @@ textarea{
     width:min(100%, 100%);
   }
 
-  .preview-file{
-    min-height:220px;
+  .kontraktor-actions{
+    gap:12px;
+    flex-direction:column;
+  }
+
+  .kontraktor-actions .btn{
+    width:100%;
   }
 }
 
@@ -1142,19 +1148,5 @@ textarea{
 
   .latest-footer{
     font-size:16px;
-  }
-
-  .preview-file h3{
-    font-size:18px;
-  }
-
-  .akses-box h4{
-    font-size:20px;
-  }
-
-  .profile-avatar{
-    width:74px;
-    height:74px;
-    font-size:30px;
   }
 }
