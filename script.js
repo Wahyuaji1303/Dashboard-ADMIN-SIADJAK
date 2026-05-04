@@ -46,6 +46,14 @@ const arsipData = [
   }
 ];
 
+const kontraktorList = [
+  "Dua Sinar Duta Jaya",
+  "Trijayamahe",
+  "Barito Anugrah Sejati",
+  "Gunung Api Mulia",
+  "Putra Teknik Sejahtera"
+];
+
 const usersData = [
   {
     nama: "Admin",
@@ -98,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
   bindAdminDropdown();
   bindModals();
   bindForms();
+  bindKontraktor();
   renderDashboard();
   renderArsipTable();
   renderUserTable();
@@ -184,7 +193,7 @@ function renderDashboard() {
   });
 }
 
-function renderArsipTable(keyword = "") {
+function renderArsipTable(keyword = "", kontraktor = "") {
   const tbody = document.getElementById("arsipTableBody");
   tbody.innerHTML = "";
 
@@ -196,9 +205,13 @@ function renderArsipTable(keyword = "") {
       ${item.kontrak}
       ${item.boks}
       ${item.status}
+      ${item.tanggalTampil}
     `.toLowerCase();
 
-    return gabung.includes(keyword.toLowerCase());
+    const cocokKeyword = gabung.includes(keyword.toLowerCase());
+    const cocokKontraktor = kontraktor === "" || item.kontraktor === kontraktor;
+
+    return cocokKeyword && cocokKontraktor;
   });
 
   if (filtered.length === 0) {
@@ -233,11 +246,69 @@ function renderArsipTable(keyword = "") {
   });
 }
 
+function filterKelolaAdmin() {
+  const keyword = document.getElementById("searchArsip").value.trim();
+  const kontraktor = document.getElementById("filterKontraktor").value;
+  renderArsipTable(keyword, kontraktor);
+}
+
 document.addEventListener("input", (e) => {
   if (e.target && e.target.id === "searchArsip") {
-    renderArsipTable(e.target.value);
+    filterKelolaAdmin();
+  }
+
+  if (e.target && e.target.id === "searchUser") {
+    renderUserTable(e.target.value);
   }
 });
+
+document.addEventListener("change", (e) => {
+  if (e.target && e.target.id === "filterKontraktor") {
+    filterKelolaAdmin();
+  }
+});
+
+function bindKontraktor() {
+  const btnOpen = document.getElementById("btnOpenKontraktor");
+  const btnSave = document.getElementById("btnSimpanKontraktor");
+
+  btnOpen.addEventListener("click", () => {
+    document.getElementById("namaKontraktorBaru").value = "";
+    openModal("kontraktorModal");
+
+    setTimeout(() => {
+      document.getElementById("namaKontraktorBaru").focus();
+    }, 100);
+  });
+
+  btnSave.addEventListener("click", () => {
+    const input = document.getElementById("namaKontraktorBaru");
+    const nama = input.value.trim();
+
+    if (!nama) {
+      alert("Nama kontraktor wajib diisi.");
+      return;
+    }
+
+    const select = document.getElementById("filterKontraktor");
+    const sudahAda = Array.from(select.options).some(opt => opt.value.toLowerCase() === nama.toLowerCase());
+
+    if (sudahAda) {
+      alert("Kontraktor sudah ada.");
+      return;
+    }
+
+    const option = document.createElement("option");
+    option.value = nama;
+    option.textContent = nama;
+    select.appendChild(option);
+    select.value = nama;
+
+    closeModal("kontraktorModal");
+    filterKelolaAdmin();
+    alert("Kontraktor berhasil ditambahkan.");
+  });
+}
 
 function openPreviewModal(index) {
   const item = arsipData[index];
@@ -316,12 +387,6 @@ function renderUserTable(keyword = "") {
   });
 }
 
-document.addEventListener("input", (e) => {
-  if (e.target && e.target.id === "searchUser") {
-    renderUserTable(e.target.value);
-  }
-});
-
 function openEditUserModal(index) {
   const user = usersData[index];
 
@@ -385,9 +450,19 @@ function bindForms() {
       status: "Terkirim"
     });
 
+    const select = document.getElementById("filterKontraktor");
+    const sudahAda = Array.from(select.options).some(opt => opt.value.toLowerCase() === kontraktor.toLowerCase());
+
+    if (!sudahAda) {
+      const option = document.createElement("option");
+      option.value = kontraktor;
+      option.textContent = kontraktor;
+      select.appendChild(option);
+    }
+
     this.reset();
     renderDashboard();
-    renderArsipTable(document.getElementById("searchArsip").value);
+    renderArsipTable();
     updateCounters();
     alert("Berkas berhasil disimpan.");
     showPage("uploadPage");
@@ -410,7 +485,7 @@ function bindForms() {
     arsipData[index].keterangan = document.getElementById("editKeterangan").value.trim();
 
     renderDashboard();
-    renderArsipTable(document.getElementById("searchArsip").value);
+    filterKelolaAdmin();
     closeModal("editArsipModal");
     alert("Perubahan berkas berhasil disimpan.");
   });
@@ -420,7 +495,7 @@ function bindForms() {
       arsipData.splice(deleteArsipIndex, 1);
       deleteArsipIndex = null;
       renderDashboard();
-      renderArsipTable(document.getElementById("searchArsip").value);
+      filterKelolaAdmin();
       updateCounters();
       closeModal("deleteArsipModal");
       alert("Berkas berhasil dihapus.");
