@@ -39,7 +39,7 @@
 
         <button class="nav-item" data-page="uploadPage">
           <span class="nav-icon">🗃️</span>
-          <span>Upload Berkas</span>
+          <span>Upload Dokumen</span>
         </button>
 
         <div class="sidebar-divider"></div>
@@ -81,7 +81,7 @@
             <div class="stats-top">
               <div>
                 <h3 id="totalArsipCount">20</h3>
-                <p>Total Berkas Arsip</p>
+                <p>Total Dokumen Arsip</p>
               </div>
               <div class="stats-icon">📁</div>
             </div>
@@ -95,7 +95,7 @@
 
         <div class="section-card latest-card">
           <div class="section-title">
-            <h3>📂 Berkas Kepesertaan Terbaru</h3>
+            <h3>📂 Dokumen Kepesertaan Terbaru</h3>
           </div>
 
           <div class="latest-list" id="latestList"></div>
@@ -107,7 +107,7 @@
               <option value="20" selected>20</option>
               <option value="50">50</option>
             </select>
-            <span>Berkas</span>
+            <span>Dokumen</span>
           </div>
         </div>
       </section>
@@ -160,7 +160,7 @@
 
       <section class="page" id="uploadPage">
         <div class="form-card">
-          <div class="form-card-title">Upload Berkas</div>
+          <div class="form-card-title">Upload Dokumen</div>
 
           <form id="uploadForm" class="form-grid">
             <div class="form-group">
@@ -184,7 +184,7 @@
             </div>
 
             <div class="form-group">
-              <label for="uploadTanggal">Tanggal Upload Berkas</label>
+              <label for="uploadTanggal">Tanggal Upload Dokumen</label>
               <input type="date" id="uploadTanggal">
             </div>
 
@@ -199,15 +199,15 @@
             </div>
 
             <div class="form-group full">
-              <label for="uploadFile">Preview Upload Berkas</label>
+              <label for="uploadFile">Preview Upload Dokumen</label>
               <div class="file-upload-box">
                 <input type="file" id="uploadFile" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
-                <small>+ Format berkas (No.Proyek_Nama Kontraktor)</small>
+                <small>+ Format dokumen (No.Proyek_Nama Kontraktor)</small>
               </div>
             </div>
 
             <div class="form-actions full">
-              <button type="submit" class="btn btn-danger">⬇ Simpan Berkas</button>
+              <button type="submit" class="btn btn-danger">⬇ Simpan Dokumen</button>
             </div>
           </form>
         </div>
@@ -290,7 +290,7 @@
   <div class="modal" id="previewModal">
     <div class="modal-box modal-lg preview-blue">
       <button class="modal-close" data-close="previewModal">✕</button>
-      <div class="modal-title">📂 Preview Berkas</div>
+      <div class="modal-title">📂 Preview Dokumen</div>
 
       <div class="preview-panel">
         <div class="preview-file">
@@ -319,7 +319,7 @@
   <div class="modal" id="editArsipModal">
     <div class="modal-box modal-lg edit-blue">
       <button class="modal-close" data-close="editArsipModal">✕</button>
-      <div class="modal-title">Edit Berkas</div>
+      <div class="modal-title">Edit Dokumen</div>
 
       <form id="editArsipForm" class="form-grid">
         <input type="hidden" id="editArsipIndex">
@@ -347,8 +347,8 @@
   <div class="modal" id="deleteArsipModal">
     <div class="modal-box modal-sm center delete-blue">
       <div class="warning-icon">⚠️</div>
-      <h3>Yakin Ingin Hapus Berkas?</h3>
-      <p>Anda akan menghapus berkas</p>
+      <h3>Yakin Ingin Hapus Dokumen?</h3>
+      <p>Anda akan menghapus dokumen</p>
       <div class="delete-file-name" id="deleteFileName">79226_DuaSinarDutaJaya.pdf</div>
 
       <div class="form-actions form-actions-center">
