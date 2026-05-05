@@ -391,6 +391,7 @@ textarea{
   font-size:16px;
 }
 
+/* KELOLA ARSIP */
 .kelola-bottom-tools{
   display:flex;
   align-items:flex-start;
@@ -502,6 +503,7 @@ textarea{
   cursor:pointer;
 }
 
+/* TABLE */
 .table-wrapper{
   width:100%;
   overflow:auto;
@@ -586,6 +588,7 @@ textarea{
   background:#46b000;
 }
 
+/* BUTTON */
 .btn{
   border:none;
   border-radius:14px;
@@ -631,6 +634,7 @@ textarea{
 .mini-edit{ background:#9ac35b; }
 .mini-delete{ background:#e25b42; }
 
+/* FORM */
 .form-card{
   background:linear-gradient(180deg, #396dca, #2c61c7);
   border-radius:30px;
@@ -719,6 +723,7 @@ textarea{
   justify-content:center;
 }
 
+/* MANAJEMEN USER */
 .user-top-cards{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
@@ -735,9 +740,24 @@ textarea{
   box-shadow:var(--shadow);
 }
 
-.soft-blue{ background:#cfe0ff; }
-.soft-green{ background:#d8efb5; }
-.soft-gray{ background:#e7e7e7; }
+.soft-blue{
+  background:#cfe0ff;
+}
+
+.soft-green{
+  background:#d8efb5;
+}
+
+/* TIPE ROLE DIBUAT LEBIH GELAP */
+.soft-gray{
+  background:linear-gradient(135deg, #334155, #0b1d4d);
+  color:#fff;
+}
+
+.soft-gray .role-title,
+.soft-gray small{
+  color:#fff;
+}
 
 .mini-card-icon{
   font-size:40px;
@@ -766,6 +786,25 @@ textarea{
   color:#ffffff;
 }
 
+/* JARAK CARI USER, TAMBAH USER, DAN TABEL */
+.user-toolbar{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  flex-wrap:wrap;
+  margin-bottom:34px;
+}
+
+#userPage .section-card{
+  margin-top:34px;
+}
+
+.user-search{
+  flex:1;
+  min-width:320px;
+}
+
+/* PROFILE */
 .profile-card-grid{
   display:grid;
   gap:16px;
@@ -803,6 +842,7 @@ textarea{
   word-break:break-word;
 }
 
+/* MODAL */
 .modal{
   position:fixed;
   inset:0;
@@ -958,6 +998,7 @@ textarea{
   word-break:break-word;
 }
 
+/* RESPONSIVE */
 @media (max-width: 1300px){
   .hero-grid{
     grid-template-columns:1fr;
@@ -1029,6 +1070,15 @@ textarea{
 
   .form-grid{
     grid-template-columns:1fr;
+  }
+
+  .user-toolbar{
+    gap:18px;
+    margin-bottom:28px;
+  }
+
+  #userPage .section-card{
+    margin-top:28px;
   }
 }
 
@@ -1117,6 +1167,26 @@ textarea{
   .kontraktor-actions .btn{
     width:100%;
   }
+
+  .user-toolbar{
+    flex-direction:column;
+    align-items:stretch;
+    gap:18px;
+    margin-bottom:28px;
+  }
+
+  .user-search{
+    width:100%;
+    min-width:0;
+  }
+
+  #btnOpenAddUser{
+    width:100%;
+  }
+
+  #userPage .section-card{
+    margin-top:28px;
+  }
 }
 
 @media (max-width: 520px){
@@ -1148,5 +1218,13 @@ textarea{
 
   .latest-footer{
     font-size:16px;
+  }
+
+  .user-toolbar{
+    margin-bottom:24px;
+  }
+
+  #userPage .section-card{
+    margin-top:24px;
   }
 }
