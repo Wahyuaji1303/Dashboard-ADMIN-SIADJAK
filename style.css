@@ -723,6 +723,68 @@ textarea{
   justify-content:center;
 }
 
+.page-title{
+
+font-size:28px;
+
+font-weight:700;
+
+margin-bottom:25px;
+
+color:#0b1d4d;
+
+}
+
+.search-panel{
+
+background:#2f66d5;
+
+padding:25px;
+
+border-radius:20px;
+
+margin-bottom:25px;
+
+}
+
+.search-panel label{
+
+color:white;
+
+font-weight:600;
+
+}
+
+.search-panel input{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:8px;
+
+margin-top:6px;
+
+}
+
+#hasilPencarian tr td{
+
+vertical-align:middle;
+
+}
+
+#hasilPencarian .action-buttons{
+
+display:flex;
+
+gap:8px;
+
+justify-content:center;
+
+}
+
 /* MANAJEMEN USER */
 .user-top-cards{
   display:grid;
@@ -1227,4 +1289,31 @@ textarea{
   #userPage .section-card{
     margin-top:24px;
   }
+
+  .kontrak-group{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+.kontrak-group input{
+
+flex:1;
+
+}
+
+.sd{
+
+font-weight:700;
+
+font-size:18px;
+
+color:white;
+
+}
+
 }
