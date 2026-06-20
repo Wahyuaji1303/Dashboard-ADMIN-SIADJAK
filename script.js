@@ -7,7 +7,7 @@ const arsipData = [
     tanggal: "2025-04-15",
     tanggalTampil: "15 April 2025",
     boks: "Filling Cabinet 5 Laci 1",
-    file: "79226_DuaSinarDutaJaya.pdf",
+    file: "./dokumen/79226_DuaSinarDutaJaya.pdf",
     aksesUser: "Admin",
     aksesDate: "1 Jan 2026",
     aksesTime: "10:30 WIB",
@@ -22,7 +22,7 @@ const arsipData = [
     tanggal: "2025-02-20",
     tanggalTampil: "20 Februari 2025",
     boks: "Filling Cabinet 5 Laci 1",
-    file: "70014_Trijayamahe.pdf",
+    file: "./dokumen/70014_Trijayamahe.pdf",
     aksesUser: "Admin",
     aksesDate: "20 Feb 2025",
     aksesTime: "09:15 WIB",
@@ -37,7 +37,7 @@ const arsipData = [
     tanggal: "2025-01-02",
     tanggalTampil: "2 Januari 2025",
     boks: "Filling Cabinet 5 Laci 1",
-    file: "66655_BaritoAnugrahSejati.pdf",
+    file: "./dokumen/66655_BaritoAnugrahSejati.pdf",
     aksesUser: "Admin",
     aksesDate: "2 Jan 2025",
     aksesTime: "13:40 WIB",
@@ -88,7 +88,17 @@ const profileData = {
   status: "Aktif"
 };
 
+const loginUser =
+JSON.parse(localStorage.getItem("loginUser")) || {
+
+nama:"Admin",
+
+role:"Admin"
+
+};
+
 let deleteArsipIndex = null;
+let currentPreviewIndex = null;
 
 const pages = document.querySelectorAll(".page");
 const navItems = document.querySelectorAll(".nav-item");
@@ -97,8 +107,9 @@ const breadcrumb = document.getElementById("breadcrumb");
 const pageTitles = {
   dashboardPage: "Home >> Dashboard",
   kelolaPage: "Home >> Kelola Arsip",
+  searchPage:"Home >> Pencarian Dokumen",
   uploadPage: "Home >> Upload Dokumen",
-  userPage: "Home >> Manajemen User"
+  userPage: "Home >> Kelola User"
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -165,11 +176,38 @@ function bindAdminDropdown() {
   });
 
   document.getElementById("btnLogout").addEventListener("click", () => {
-    if (confirm("Yakin ingin logout?")) {
-      alert("Logout berhasil.");
-      window.location.reload();
-    }
-  });
+
+    const konfirmasi = confirm("Apakah Anda yakin ingin logout ?");
+
+    if(!konfirmasi) return;
+
+    /* hapus seluruh session */
+
+    localStorage.clear();
+
+    sessionStorage.clear();
+
+    /* hapus login */
+
+    localStorage.removeItem("loginUser");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("userLogin");
+    localStorage.removeItem("isLogin");
+    localStorage.removeItem("role");
+
+    sessionStorage.removeItem("loginUser");
+    sessionStorage.removeItem("currentUser");
+    sessionStorage.removeItem("userLogin");
+    sessionStorage.removeItem("isLogin");
+    sessionStorage.removeItem("role");
+
+    alert("Logout berhasil.");
+
+    window.location.replace(
+        "https://wahyuaji1303.github.io/SIADJAK-Arsip-Digital-Jasa-Konstruksi-/"
+    );
+
+});
 }
 
 function renderDashboard() {
@@ -245,7 +283,118 @@ function renderArsipTable(keyword = "", kontraktor = "") {
     `);
   });
 }
+function cariDokumen(){
 
+const no=document.getElementById("cariNoProyek").value.toLowerCase();
+
+const nama=document.getElementById("cariNamaProyek").value.toLowerCase();
+
+const kontraktor=document.getElementById("cariKontraktor").value.toLowerCase();
+
+const tanggal=document.getElementById("cariTanggal").value;
+
+const tbody=document.getElementById("hasilPencarian");
+
+tbody.innerHTML="";
+
+const hasil=arsipData.filter(item=>{
+
+return(
+
+item.noProyek.toLowerCase().includes(no)
+
+&&
+
+item.namaProyek.toLowerCase().includes(nama)
+
+&&
+
+item.kontraktor.toLowerCase().includes(kontraktor)
+
+&&
+
+(tanggal=="" || item.tanggal==tanggal)
+
+);
+
+});
+
+if(hasil.length==0){
+
+tbody.innerHTML=`
+
+<tr>
+
+<td colspan="7" style="text-align:center">
+
+Data Tidak Ditemukan
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+hasil.forEach(item=>{
+
+const index=arsipData.findIndex(x=>x.noProyek==item.noProyek);
+
+tbody.innerHTML+=`
+
+<tr>
+
+<td>${item.noProyek}</td>
+
+<td>${item.namaProyek}</td>
+
+<td>${item.kontraktor}</td>
+
+<td>${item.kontrak}</td>
+
+<td>${item.tanggalTampil}</td>
+
+<td>${item.boks}</td>
+
+<td>
+
+<div class="action-buttons">
+
+<button class="mini-btn mini-view"
+onclick="openPreviewModal(${index})">
+
+Lihat
+
+</button>
+
+<button class="mini-btn mini-edit"
+onclick="openEditArsipModal(${index})">
+
+Edit
+
+</button>
+
+<button class="mini-btn mini-delete"
+onclick="openDeleteArsipModal(${index})">
+
+Hapus
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
 function filterKelolaAdmin() {
   const keyword = document.getElementById("searchArsip").value.trim();
   const kontraktor = document.getElementById("filterKontraktor").value;
@@ -310,7 +459,58 @@ function bindKontraktor() {
   });
 }
 
-function openPreviewModal(index) {
+function openPreviewModal(index){
+
+currentPreviewIndex=index;
+
+const item=arsipData[index];
+
+const sekarang=new Date();
+
+const tanggal=sekarang.toLocaleDateString("id-ID",{
+
+day:"numeric",
+
+month:"long",
+
+year:"numeric"
+
+});
+
+const jam=sekarang.toLocaleTimeString("id-ID",{
+
+hour:"2-digit",
+
+minute:"2-digit"
+
+})+" WIB";
+
+item.aksesUser=loginUser.nama;
+
+item.aksesDate=tanggal;
+
+item.aksesTime=jam;
+
+document.getElementById("previewFileName").textContent=
+
+item.file.split("/").pop();
+
+document.getElementById("previewAksesUser").textContent=
+
+"👤 "+item.aksesUser;
+
+document.getElementById("previewAksesDate").textContent=
+
+item.aksesDate;
+
+document.getElementById("previewAksesTime").textContent=
+
+item.aksesTime;
+
+openModal("previewModal");
+
+}
+
   const item = arsipData[index];
 
   document.getElementById("previewFileName").textContent = item.file;
@@ -319,7 +519,7 @@ function openPreviewModal(index) {
   document.getElementById("previewAksesTime").textContent = item.aksesTime;
 
   openModal("previewModal");
-}
+
 
 function openEditArsipModal(index) {
   const item = arsipData[index];
@@ -359,6 +559,8 @@ function renderUserTable(keyword = "") {
     `;
     return;
   }
+
+  
 
   filtered.forEach((user) => {
     const originalIndex = usersData.findIndex(item => item.email === user.email);
@@ -419,7 +621,7 @@ function bindForms() {
     const noProyek = document.getElementById("uploadNoProyek").value.trim();
     const namaProyek = document.getElementById("uploadNamaProyek").value.trim();
     const kontraktor = document.getElementById("uploadKontraktor").value.trim();
-    const kontrak = document.getElementById("uploadKontrak").value.trim();
+    const mulai= document.getElementById("uploadKontrakMulai").value; const selesai= document.getElementById("uploadKontrakSelesai").value; const kontrak= formatTanggalSimple(mulai)+ " s/d "+ formatTanggalSimple(selesai);
     const tanggal = document.getElementById("uploadTanggal").value;
     const boks = document.getElementById("uploadBoks").value.trim();
     const keterangan = document.getElementById("uploadKeterangan").value.trim();
@@ -478,7 +680,10 @@ function bindForms() {
     arsipData[index].noProyek = document.getElementById("editNoProyek").value.trim();
     arsipData[index].namaProyek = document.getElementById("editNamaProyek").value.trim();
     arsipData[index].kontraktor = document.getElementById("editKontraktor").value.trim();
-    arsipData[index].kontrak = document.getElementById("editKontrak").value.trim();
+    const mulai= document.getElementById("editKontrakMulai").value;
+    const selesai= document.getElementById("editKontrakSelesai").value;
+    arsipData[index].kontrak= formatTanggalSimple(mulai)+" s/d "+ formatTanggalSimple(selesai);
+
     arsipData[index].tanggal = document.getElementById("editTanggal").value;
     arsipData[index].tanggalTampil = formatTanggalSimple(arsipData[index].tanggal);
     arsipData[index].boks = document.getElementById("editBoks").value.trim();
@@ -574,6 +779,31 @@ function bindForms() {
   });
 }
 
+document.getElementById("btnDownloadPDF").onclick = function () {
+
+    if (currentPreviewIndex === null) {
+        alert("Dokumen tidak ditemukan.");
+        return;
+    }
+
+    const item = arsipData[currentPreviewIndex];
+
+    const a = document.createElement("a");
+
+    a.href = item.file;
+
+    a.download = "";
+
+    a.target = "_blank";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    document.body.removeChild(a);
+
+};
+
 function bindModals() {
   document.querySelectorAll("[data-close]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -622,4 +852,46 @@ function formatTanggalSimple(dateValue) {
     month: "long",
     year: "numeric"
   });
+  localStorage.clear();
+sessionStorage.clear();
+
+window.location.href =
+"https://wahyuaji1303.github.io/SIADJAK-Arsip-Digital-Jasa-Konstruksi-/";
+
+function convertTanggal(text){
+
+const bulan={
+
+"Januari":"01",
+
+"Februari":"02",
+
+"Maret":"03",
+
+"April":"04",
+
+"Mei":"05",
+
+"Juni":"06",
+
+"Juli":"07",
+
+"Agustus":"08",
+
+"September":"09",
+
+"Oktober":"10",
+
+"November":"11",
+
+"Desember":"12"
+
+};
+
+const p=text.trim().split(" ");
+
+return p[2]+"-"+bulan[p[1]]+"-"+p[0].padStart(2,"0");
+
+}
+
 }
