@@ -37,6 +37,11 @@
           <span>Kelola Arsip</span>
         </button>
 
+        <button class="nav-item" data-page="searchPage">
+          <span class="nav-icon">🔎</span>
+         <span>Pencarian</span>
+        </button>
+
         <button class="nav-item" data-page="uploadPage">
           <span class="nav-icon">🗃️</span>
           <span>Upload Dokumen</span>
@@ -46,7 +51,7 @@
 
         <button class="nav-item" data-page="userPage">
           <span class="nav-icon">👥</span>
-          <span>Manajemen User</span>
+          <span>Kelola User</span>
         </button>
       </nav>
     </aside>
@@ -67,9 +72,14 @@
           </button>
 
           <div class="admin-dropdown" id="adminDropdown">
-            <button type="button" id="btnProfile">👤 Profile</button>
-            <button type="button" id="btnLogout">↪ Logout</button>
-          </div>
+    <button type="button" id="btnProfile">
+        👤 Admin
+    </button>
+
+    <button type="button" id="btnLogout">
+        ↪ Logout
+    </button>
+</div>
         </div>
       </header>
 
@@ -158,6 +168,88 @@
         </div>
       </section>
 
+      <section class="page" id="searchPage">
+
+<div class="section-card">
+
+<h2 class="page-title">
+🔎 Pencarian Dokumen
+</h2>
+
+<div class="search-panel">
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Cari No. Proyek</label>
+<input type="text" id="cariNoProyek">
+</div>
+
+<div class="form-group">
+<label>Cari Nama Proyek</label>
+<input type="text" id="cariNamaProyek">
+</div>
+
+<div class="form-group">
+<label>Cari Kontraktor</label>
+<input type="text" id="cariKontraktor">
+</div>
+
+<div class="form-group">
+<label>Cari Tanggal</label>
+<input type="date" id="cariTanggal">
+</div>
+
+</div>
+
+<div style="margin-top:20px">
+
+<button
+class="btn btn-primary"
+onclick="cariDokumen()">
+
+🔎 Cari Dokumen
+
+</button>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="table-wrapper">
+
+<table class="data-table">
+
+<thead>
+
+<tr>
+
+<th>No. Proyek</th>
+<th>Nama Proyek</th>
+<th>Kontraktor</th>
+<th>Kontrak</th>
+<th>Tanggal</th>
+<th>No. Boks / Laci Filling</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="hasilPencarian">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
       <section class="page" id="uploadPage">
         <div class="form-card">
           <div class="form-card-title">Upload Dokumen</div>
@@ -180,7 +272,7 @@
 
             <div class="form-group">
               <label for="uploadKontrak">Kontrak</label>
-              <input type="text" id="uploadKontrak" placeholder="Tambahkan masa kontrak.....">
+              <input type="date" id="uploadKontrakMulai"><span class="sd">s/d</span><input type="date" id="uploadKontrakSelesai">
             </div>
 
             <div class="form-group">
@@ -296,7 +388,12 @@
         <div class="preview-file">
           <div class="preview-file-icon">📁</div>
           <h3 id="previewFileName">79226_DuaSinarDutaJaya.pdf</h3>
-          <button class="btn btn-danger" type="button">⬇ Download PDF</button>
+          <button
+              id="btnDownloadPDF"
+              class="btn btn-danger"
+              type="button">
+              ⬇ Download PDF
+          </button>
         </div>
 
         <div class="akses-box">
@@ -316,7 +413,7 @@
     </div>
   </div>
 
-  <div class="modal" id="editArsipModal">
+   <div class="modal" id="editArsipModal">
     <div class="modal-box modal-lg edit-blue">
       <button class="modal-close" data-close="editArsipModal">✕</button>
       <div class="modal-title">Edit Dokumen</div>
