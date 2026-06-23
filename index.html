@@ -67,13 +67,13 @@
 
         <div class="admin-box">
           <button class="admin-trigger" id="adminTrigger" type="button">
-            <span>👤 Admin</span>
+            <span>👤 Carina </span>
             <span>▾</span>
           </button>
 
           <div class="admin-dropdown" id="adminDropdown">
     <button type="button" id="btnProfile">
-        👤 Admin
+        👤 Carina 
     </button>
 
     <button type="button" id="btnLogout">
@@ -86,42 +86,36 @@
       <div class="breadcrumb" id="breadcrumb">Home >> Dashboard</div>
 
       <section class="page active" id="dashboardPage">
-        <div class="hero-grid">
-          <div class="stats-card primary">
-            <div class="stats-top">
-              <div>
-                <h3 id="totalArsipCount">20</h3>
+
+<div class="dashboard-wrapper">
+
+    <div class="stats-card primary dashboard-total">
+        <div class="stats-top">
+            <div>
+                <h3 id="totalArsipCount">0</h3>
                 <p>Total Dokumen Arsip</p>
-              </div>
-              <div class="stats-icon">📁</div>
             </div>
-          </div>
 
-          <div class="welcome-panel">
-            <h3>Dashboard Arsip</h3>
-            <p>SISTEM INFORMASI ARSIP DIGITAL JASA KONSTRUKSI</p>
-          </div>
+            <div class="stats-icon">📁</div>
+        </div>
+    </div>
+
+    <div class="section-card latest-card dashboard-latest">
+
+        <div class="section-title">
+            <h3>
+                📂 Dokumen Kepesertaan Terbaru
+                <span id="latestCount">(0)</span>
+            </h3>
         </div>
 
-        <div class="section-card latest-card">
-          <div class="section-title">
-            <h3>📂 Dokumen Kepesertaan Terbaru</h3>
-          </div>
+        <div class="latest-list" id="latestList"></div>
 
-          <div class="latest-list" id="latestList"></div>
+    </div>
 
-          <div class="latest-footer">
-            <label for="jumlahTampil">Tampilkan</label>
-            <select id="jumlahTampil">
-              <option value="10">10</option>
-              <option value="20" selected>20</option>
-              <option value="50">50</option>
-            </select>
-            <span>Dokumen</span>
-          </div>
-        </div>
-      </section>
+</div>
 
+</section>
       <section class="page" id="kelolaPage">
         <div class="section-card">
           <div class="table-wrapper">
@@ -316,15 +310,7 @@ onclick="cariDokumen()">
             </div>
           </div>
 
-          <div class="mini-card soft-green">
-            <div class="mini-card-icon">🟢</div>
-            <div>
-              <h4 id="activeUserCount">3</h4>
-              <p>Active Users</p>
-              <small>Pengguna aktif</small>
-            </div>
-          </div>
-
+        
           <div class="mini-card soft-gray">
             <div>
               <p class="role-title">Tipe Role</p>
@@ -351,7 +337,6 @@ onclick="cariDokumen()">
                   <th>User</th>
                   <th>Email</th>
                   <th>Role</th>
-                  <th>Status</th>
                   <th>Terakhir Login</th>
                   <th>Action</th>
                 </tr>
@@ -371,10 +356,10 @@ onclick="cariDokumen()">
 
       <div class="profile-card-grid">
         <div class="profile-avatar">👤</div>
-        <div class="profile-item"><span>Nama</span><strong id="profileName">Admin</strong></div>
-        <div class="profile-item"><span>Email</span><strong id="profileEmail">admin@siadjak.com</strong></div>
+        <div class="profile-item"><span>Nama</span><strong id="profileName">Carina Ardhiany</strong></div>
+        <div class="profile-item"><span>Email</span><strong id="profileEmail">carina.ardhiany@bpjsketenagakerjaan.go.id</strong></div>
         <div class="profile-item"><span>Role</span><strong id="profileRole">Admin</strong></div>
-        <div class="profile-item"><span>Status</span><strong id="profileStatus">Aktif</strong></div>
+        <div class="profile-item"><span>Username</span><strong id="profileUsername">carinaardhiany</strong></div>
       </div>
     </div>
   </div>
@@ -385,27 +370,25 @@ onclick="cariDokumen()">
       <div class="modal-title">📂 Preview Dokumen</div>
 
       <div class="preview-panel">
-        <div class="preview-file">
-          <div class="preview-file-icon">📁</div>
-          <h3 id="previewFileName">79226_DuaSinarDutaJaya.pdf</h3>
-          <button
-              id="btnDownloadPDF"
-              class="btn btn-danger"
-              type="button">
-              ⬇ Download PDF
-          </button>
-        </div>
 
-        <div class="akses-box">
-          <h4>🕒 Riwayat Akses</h4>
-          <div class="akses-item">
-            <span class="akses-tag">Akses ke-1</span>
-            <span id="previewAksesUser">👤 Admin</span>
-            <span id="previewAksesDate">1 Jan 2026</span>
-            <span id="previewAksesTime">10:30 WIB</span>
-          </div>
-        </div>
+    <div class="preview-file">
+        <div class="preview-file-icon">📁</div>
 
+        <h3 id="previewFileName">
+            79226_DuaSinarDutaJaya.pdf
+        </h3>
+
+        <button
+            id="btnDownloadPDF"
+            class="btn btn-danger"
+            type="button">
+
+            ⬇ Download PDF
+
+        </button>
+    </div>
+
+</div>
         <div class="form-actions form-actions-start">
           <button type="button" class="btn btn-primary" data-close="previewModal">Tutup</button>
         </div>
