@@ -569,17 +569,6 @@ textarea{
   color:#334155;
 }
 
-.status-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:700;
-  background:#d7f3bc;
-  color:#2e5d1e;
-}
 
 .status-dot{
   width:10px;
@@ -846,6 +835,66 @@ justify-content:center;
   font-weight:700;
   margin-bottom:10px;
   color:#ffffff;
+}
+
+/* ========================================
+   KHUSUS HALAMAN KELOLA USER
+======================================== */
+
+#userPage .data-table{
+    width:100%;
+    min-width:100%;
+    table-layout:fixed;
+}
+
+#userPage .data-table th,
+#userPage .data-table td{
+    vertical-align:middle;
+    padding:22px 20px;
+}
+
+#userPage .data-table th:nth-child(1),
+#userPage .data-table td:nth-child(1){
+    width:20%;
+}
+
+#userPage .data-table th:nth-child(2),
+#userPage .data-table td:nth-child(2){
+    width:35%;
+}
+
+#userPage .data-table th:nth-child(3),
+#userPage .data-table td:nth-child(3){
+    width:10%;
+    text-align:center;
+}
+
+#userPage .data-table th:nth-child(4),
+#userPage .data-table td:nth-child(4){
+    width:15%;
+    text-align:center;
+}
+
+#userPage .data-table th:nth-child(5),
+#userPage .data-table td:nth-child(5){
+    width:20%;
+    text-align:center;
+}
+
+#userPage .action-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:nowrap;
+}
+
+#userPage .mini-btn{
+    min-width:80px;
+}
+
+#userPage td:nth-child(4){
+    white-space:nowrap;
 }
 
 /* JARAK CARI USER, TAMBAH USER, DAN TABEL */
@@ -1316,4 +1365,43 @@ color:white;
 
 }
 
+}
+/* DASHBOARD BARU */
+
+.dashboard-wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+.dashboard-total{
+    width:100%;
+    min-height:180px;
+}
+
+.dashboard-latest{
+    width:100%;
+}
+
+.dashboard-total h3{
+    font-size:72px;
+}
+
+.dashboard-total p{
+    font-size:30px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+#latestCount{
+    background:#ffffff;
+    color:#2f66d5;
+    padding:6px 16px;
+    border-radius:30px;
+    font-size:18px;
+    font-weight:700;
 }
