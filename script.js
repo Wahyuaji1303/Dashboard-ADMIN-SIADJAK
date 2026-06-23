@@ -43,7 +43,35 @@ const arsipData = [
     aksesTime: "13:40 WIB",
     status: "Terkirim",
     keterangan: "Berkas maintenance pabrik."
-  }
+  },
+  {
+    noProyek:"2500001654175",
+    namaProyek:"Rehabilitasi Ringan Bangunan Tidak Bertingkat 30 Paket E294",
+    kontraktor:"ALFASINDO PRATAMA",
+    kontrak:"26 November 2025 s/d 26 Desember 2026",
+    tanggal:"2025-11-26",
+    tanggalTampil:"26 November 2025",
+    boks:"Filling Cabinet 5 Laci 1",
+    file:"./dokumen/654175_ALFASINDO.pdf",
+    aksesUser:"Admin",
+    aksesDate:"26 November 2025",
+    aksesTime:"08:00 WIB",
+    status:"Terkirim"
+},
+{
+    noProyek:"2500001654148",
+    namaProyek:"Rehabilitasi Ringan Bangunan Tidak Bertingkat 30 Paket E416",
+    kontraktor:"ALFASINDO PRATAMA",
+    kontrak:"26 November 2025 s/d 26 Desember 2026",
+    tanggal:"2025-11-26",
+    tanggalTampil:"26 November 2025",
+    boks:"Filling Cabinet 5 Laci 1",
+    file:"./dokumen/654148_ALFASINDO.pdf",
+    aksesUser:"Admin",
+    aksesDate:"26 November 2025",
+    aksesTime:"10:00 WIB",
+    status:"Terkirim"
+}
 ];
 
 const kontraktorList = [
@@ -55,37 +83,48 @@ const kontraktorList = [
 ];
 
 const usersData = [
-  {
-    nama: "Admin",
-    email: "admin@siadjak.com",
-    role: "Admin",
-    status: "Aktif",
-    terakhirLogin: "19 April 2025, 14:30",
-    anda: true
-  },
-  {
-    nama: "Hailey Bieber",
-    email: "hailey@siadjak.com",
-    role: "User",
-    status: "Aktif",
-    terakhirLogin: "18 April 2025, 10:22",
-    anda: false
-  },
-  {
-    nama: "Daniel Caesar",
-    email: "daniel@siadjak.com",
-    role: "User",
-    status: "Aktif",
-    terakhirLogin: "17 April 2025, 12:25",
-    anda: false
-  }
+{
+nama:"Carina Ardhiany",
+email:"carina.ardhiany@bpjsketenagakerjaan.go.id",
+role:"Admin",
+terakhirLogin:"29 Juni 2026, 08:00",
+anda:true
+},
+{
+nama:"Hailey Bieber",
+email:"hailey@bpjsketenagakerjaan.go.id",
+role:"User",
+terakhirLogin:"29 Juni 2026, 10:00",
+anda:false
+},
+{
+nama:"Daniel Caesar",
+email:"daniel@bpjsketenagakerjaan.go.id",
+role:"User",
+terakhirLogin:"29 Juni 2026, 12:00",
+anda:false
+},
+{
+nama:"ALFASINDO 1",
+email:"alfasindo1@bpjsketenagakerjaan.go.id",
+role:"User",
+terakhirLogin:"29 Juni 2026, 14:00",
+anda:false
+},
+{
+nama:"ALFASINDO 2",
+email:"alfasindo2@bpjsketenagakerjaan.go.id",
+role:"User",
+terakhirLogin:"29 Juni 2026, 16:00",
+anda:false
+}
 ];
 
 const profileData = {
-  nama: "Admin",
-  email: "admin@siadjak.com",
+  nama: "Carina Ardhiany",
+  email: "carina.ardhiany@bpjsketenagakerjaan.go.id",
   role: "Admin",
-  status: "Aktif"
+  username: "carinaardhiany",
 };
 
 const loginUser =
@@ -170,7 +209,7 @@ function bindAdminDropdown() {
     document.getElementById("profileName").textContent = profileData.nama;
     document.getElementById("profileEmail").textContent = profileData.email;
     document.getElementById("profileRole").textContent = profileData.role;
-    document.getElementById("profileStatus").textContent = profileData.status;
+    document.getElementById("profileUsername").textContent = profileData.username;
     openModal("profileModal");
     dropdown.classList.remove("show");
   });
@@ -210,25 +249,46 @@ function bindAdminDropdown() {
 });
 }
 
-function renderDashboard() {
-  document.getElementById("totalArsipCount").textContent = arsipData.length;
-  const latestList = document.getElementById("latestList");
-  latestList.innerHTML = "";
+function renderDashboard(){
 
-  arsipData.forEach(item => {
-    latestList.insertAdjacentHTML("beforeend", `
-      <div class="latest-item">
-        <div class="latest-left">
-          <div class="file-emoji">📁</div>
-          <div>
-            <strong>${item.noProyek}</strong>
-            <span>${item.kontraktor}</span>
-          </div>
-        </div>
-        <div class="latest-date">${formatTanggalSimple(item.tanggal)}</div>
-      </div>
-    `);
-  });
+    document.getElementById("totalArsipCount").textContent =
+    arsipData.length;
+
+    document.getElementById("latestCount").textContent =
+    "(" + arsipData.length + ")";
+
+    const latestList =
+    document.getElementById("latestList");
+
+    latestList.innerHTML = "";
+
+    arsipData.forEach(item => {
+
+        latestList.insertAdjacentHTML("beforeend",`
+
+            <div class="latest-item">
+
+                <div class="latest-left">
+
+                    <div class="file-emoji">📁</div>
+
+                    <div>
+                        <strong>${item.noProyek}</strong>
+                        <span>${item.kontraktor}</span>
+                    </div>
+
+                </div>
+
+                <div class="latest-date">
+                    ${formatTanggalSimple(item.tanggal)}
+                </div>
+
+            </div>
+
+        `);
+
+    });
+
 }
 
 function renderArsipTable(keyword = "", kontraktor = "") {
@@ -461,66 +521,17 @@ function bindKontraktor() {
 
 function openPreviewModal(index){
 
-currentPreviewIndex=index;
+    currentPreviewIndex = index;
 
-const item=arsipData[index];
+    const item = arsipData[index];
 
-const sekarang=new Date();
+    document.getElementById("previewFileName").textContent =
+        item.file.split("/").pop();
 
-const tanggal=sekarang.toLocaleDateString("id-ID",{
-
-day:"numeric",
-
-month:"long",
-
-year:"numeric"
-
-});
-
-const jam=sekarang.toLocaleTimeString("id-ID",{
-
-hour:"2-digit",
-
-minute:"2-digit"
-
-})+" WIB";
-
-item.aksesUser=loginUser.nama;
-
-item.aksesDate=tanggal;
-
-item.aksesTime=jam;
-
-document.getElementById("previewFileName").textContent=
-
-item.file.split("/").pop();
-
-document.getElementById("previewAksesUser").textContent=
-
-"👤 "+item.aksesUser;
-
-document.getElementById("previewAksesDate").textContent=
-
-item.aksesDate;
-
-document.getElementById("previewAksesTime").textContent=
-
-item.aksesTime;
-
-openModal("previewModal");
-
+    openModal("previewModal");
 }
 
-  const item = arsipData[index];
-
-  document.getElementById("previewFileName").textContent = item.file;
-  document.getElementById("previewAksesUser").textContent = `👤 ${item.aksesUser}`;
-  document.getElementById("previewAksesDate").textContent = item.aksesDate;
-  document.getElementById("previewAksesTime").textContent = item.aksesTime;
-
-  openModal("previewModal");
-
-
+ 
 function openEditArsipModal(index) {
   const item = arsipData[index];
 
@@ -572,11 +583,7 @@ function renderUserTable(keyword = "") {
         <td><strong>👤 ${user.nama}</strong> ${labelAnda}</td>
         <td>${user.email}</td>
         <td><span class="badge ${roleClass}">${user.role}</span></td>
-        <td>
-          <span class="status-pill">
-            <span class="status-dot"></span>${user.status}
-          </span>
-        </td>
+        
         <td>${user.terakhirLogin}</td>
         <td>
           <div class="action-buttons">
